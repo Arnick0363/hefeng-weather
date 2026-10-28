@@ -1,0 +1,145 @@
+.page {
+  min-height: 100vh;
+  background: #e7eef6;
+  padding: 20rpx 24rpx calc(140rpx + env(safe-area-inset-bottom));
+}
+
+.search-wrap {
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 20rpx;
+  box-shadow: 0 8rpx 24rpx rgba(22, 48, 84, 0.05);
+}
+
+.search {
+  background: #f3f6fb;
+  border-radius: 999rpx;
+  height: 76rpx;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+}
+
+.ph {
+  color: #8b97a6;
+}
+
+.locate {
+  margin-top: 16rpx;
+  text-align: center;
+  color: #1d4f91;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 28rpx;
+  padding: 22rpx 22rpx 8rpx;
+  margin-top: 20rpx;
+}
+
+.title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 650;
+  margin-bottom: 8rpx;
+}
+
+.hint {
+  display: block;
+  color: #5c6b7a;
+  font-size: 24rpx;
+  line-height: 1.5;
+  margin: 12rpx 8rpx;
+}
+
+.hint.warn {
+  color: #8a4b12;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 0;
+  border-top: 1rpx solid #eef2f6;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+}
+
+.name-line {
+  display: flex;
+  align-items: center;
+}
+
+.name {
+  font-size: 32rpx;
+  font-weight: 650;
+  color: #1a2332;
+}
+
+.line,
+.chip-line {
+  display: block;
+  margin-top: 4rpx;
+  color: #5c6b7a;
+  font-size: 24rpx;
+}
+
+.badge {
+  margin-left: 12rpx;
+  background: #1d4f91;
+  color: #ffffff;
+  font-size: 20rpx;
+  border-radius: 999rpx;
+  padding: 2rpx 12rpx;
+}
+
+.action {
+  margin-left: 16rpx;
+  background: #1d4f91;
+  color: #ffffff;
+  border-radius: 999rpx;
+  padding: 10rpx 22rpx;
+  font-size: 24rpx;
+}
+
+.action.ghost {
+  background: #e8f0fb;
+  color: #1d4f91;
+}
+
+.action.danger {
+  background: #fff1f0;
+  color: #c2413b;
+}
+
+.hot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: 12rpx;
+}
+
+.chip {
+  width: 31%;
+  background: #f4f7fb;
+  border-radius: 20rpx;
+  padding: 16rpx 10rpx;
+  margin-top: 14rpx;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.chip.on {
+  background: #e8f0fb;
+}
+
+.chip-name {
+  display: block;
+  font-size: 28rpx;
+  font-weight: 650;
+  color: #1a2332;
+}

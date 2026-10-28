@@ -1,0 +1,137 @@
+<view class="page {{themeClass}}">
+  <view class="hero">
+    <view class="topbar">
+      <view class="city" bindtap="goCities">
+        <text class="city-name">{{cityName}}</text>
+        <text class="caret">▾</text>
+      </view>
+      <view class="sat-btn" bindtap="goSatellite">卫星云图</view>
+    </view>
+
+    <block wx:if="{{hasNow}}">
+      <view class="hero-main">
+        <text class="emoji">{{emoji}}</text>
+        <view class="hero-copy">
+          <view class="temp-row">
+            <text class="temp">{{temp}}</text>
+            <text class="degree">°</text>
+          </view>
+          <text class="desc">{{text}}</text>
+          <text class="summary" wx:if="{{summary}}">{{summary}}</text>
+        </view>
+      </view>
+      <view class="hl">
+        <text>最高 {{high}}°</text>
+        <text class="dot">·</text>
+        <text>最低 {{low}}°</text>
+      </view>
+      <view class="daily-miss" wx:if="{{dailyError}}">{{dailyError}}</view>
+    </block>
+    <view wx:elif="{{loading}}" class="hero-state">正在获取天气…</view>
+    <view wx:else class="hero-state">暂时没有实况</view>
+  </view>
+
+  <view class="sheet">
+    <view wx:if="{{error && !hasNow}}" class="card state-card">
+      <text class="state-title">暂时无法获取天气</text>
+      <text class="state-desc">{{error}}</text>
+      <view class="btn" bindtap="load">重试</view>
+    </view>
+
+    <block wx:if="{{hasNow}}">
+      <view wx:if="{{warnings.length}}" class="warn-list">
+        <view class="warn" wx:for="{{warnings}}" wx:key="key" style="border-left-color: {{item.color}};">
+          <text class="warn-title">{{item.title}}</text>
+          <text class="warn-text" wx:if="{{item.text}}">{{item.text}}</text>
+          <text class="warn-meta" wx:if="{{item.meta}}">{{item.meta}}</text>
+        </view>
+      </view>
+      <view wx:elif="{{warningError}}" class="note">天气预警暂不可用。{{warningError}}</view>
+      <view wx:elif="{{warningReady}}" class="note quiet">当前没有生效的天气预警</view>
+
+      <view class="card">
+        <view class="card-head">
+          <text class="section-title">未来小时</text>
+          <text class="link" bindtap="goHourly">全部</text>
+        </view>
+        <view class="hour-note" wx:if="{{hourNote}}">{{hourNote}}</view>
+        <scroll-view wx:if="{{hours.length}}" scroll-x class="h-scroll" show-scrollbar="{{false}}">
+          <view class="h-row">
+            <view wx:for="{{hours}}" wx:key="key" class="h-item {{item.kind === 'hour' ? '' : 'sun'}}">
+              <block wx:if="{{item.kind === 'hour'}}">
+                <text class="h-time">{{item.time}}</text>
+                <text class="h-emoji">{{item.emoji}}</text>
+                <text class="h-temp">{{item.temp}}°</text>
+                <text class="h-extra">{{item.extra}}</text>
+              </block>
+              <text wx:else class="h-sun">{{item.label}}</text>
+            </view>
+          </view>
+        </scroll-view>
+        <view wx:else class="note">{{hourError || '暂无逐小时数据'}}</view>
+      </view>
+
+      <view class="card">
+        <text class="section-title">日出日落</text>
+        <view wx:if="{{sun.visible}}" class="sun-box">
+          <view class="sun-times">
+            <text>日出 {{sun.sunrise}}</text>
+            <text>日落 {{sun.sunset}}</text>
+          </view>
+          <view class="track">
+            <view class="sun-ball" style="left: {{sun.left}}%;">☀</view>
+          </view>
+          <text class="sun-hint">{{sun.text}}</text>
+        </view>
+        <view wx:else class="note">{{sun.text || '暂无日出日落时间'}}</view>
+      </view>
+
+      <view class="card">
+        <text class="section-title">实况详情</text>
+        <view class="metrics">
+          <view class="metric" wx:for="{{metrics}}" wx:key="label">
+            <text class="metric-label">{{item.label}}</text>
+            <text class="metric-value">{{item.value}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="card air" wx:if="{{air}}">
+        <view class="card-head">
+          <text class="section-title">空气质量</text>
+          <text class="air-pill" style="background: {{air.color}};">{{air.category}}</text>
+        </view>
+        <view class="air-main">
+          <text class="air-num">{{air.aqi}}</text>
+          <view class="air-copy">
+            <text>{{air.standard}}</text>
+            <text class="muted">首要污染物 {{air.primary}}</text>
+          </view>
+        </view>
+        <view class="air-row">
+          <text>PM2.5 {{air.pm25}}</text>
+          <text>PM10 {{air.pm10}}</text>
+        </view>
+      </view>
+      <view wx:elif="{{airError}}" class="card note">空气质量暂不可用。{{airError}}</view>
+
+      <view class="card" wx:if="{{indices.length}}">
+        <text class="section-title">生活指数</text>
+        <view class="index-grid">
+          <view wx:for="{{indices}}" wx:key="type" class="index-card {{item.dress ? 'dress' : ''}}">
+            <view class="index-top">
+              <text class="index-name">{{item.name}}</text>
+              <text class="index-cat">{{item.category}}</text>
+            </view>
+            <text class="index-text" wx:if="{{item.text}}">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view wx:elif="{{indexError}}" class="card note">生活指数暂不可用。{{indexError}}</view>
+
+      <view class="text-btn" bindtap="goForecast">查看 7 / 15 / 30 日预报</view>
+      <view class="footer">天气数据来自和风天气</view>
+    </block>
+  </view>
+  <tab-bar current="home" />
+</view>

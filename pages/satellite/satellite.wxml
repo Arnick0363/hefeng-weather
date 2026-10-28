@@ -1,0 +1,55 @@
+<view class="page">
+  <view class="map-wrap">
+    <map
+      wx:if="{{hasCoord}}"
+      class="map"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      scale="10"
+      enable-satellite="{{true}}"
+      enable-zoom="{{true}}"
+      enable-scroll="{{true}}"
+      markers="{{markers}}"
+    ></map>
+    <view wx:else class="map-miss">缺少这个城市的经纬度。请回到城市页，搜索后重新添加。</view>
+    <view class="map-badge">{{cityName}} · 卫星地图</view>
+  </view>
+
+  <view class="cloud">
+    <view class="cloud-head">
+      <view>
+        <text class="title">卫星云图</text>
+        <text class="source">风云四号 B 星 · 中央气象台</text>
+      </view>
+      <text class="time" wx:if="{{frames.length}}">{{frames[index].label}}</text>
+    </view>
+
+    <view class="stage">
+      <image
+        wx:if="{{frames.length && !imgError}}"
+        class="cloud-img"
+        src="{{frames[index].url}}"
+        mode="aspectFit"
+        binderror="onImgError"
+      />
+      <view wx:else class="cloud-fail">这一帧云图加载失败。可以拖动时间轴查看其他时次，或稍后再试。</view>
+    </view>
+
+    <view class="controls" wx:if="{{frames.length}}">
+      <view class="play" bindtap="toggle">{{playing ? '暂停' : '播放'}}</view>
+      <slider
+        class="slider"
+        min="0"
+        max="{{frames.length - 1}}"
+        step="1"
+        value="{{index}}"
+        activeColor="#1d4f91"
+        block-size="18"
+        bindchange="onSlide"
+      />
+      <text class="count">{{index + 1}}/{{frames.length}}</text>
+    </view>
+    <text class="tip">云图时间是北京时间，画面覆盖中国区域，不是单城市局部放大。</text>
+  </view>
+  <tab-bar current="satellite" />
+</view>

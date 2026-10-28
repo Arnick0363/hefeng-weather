@@ -1,0 +1,18 @@
+<view class="dock">
+  <view class="item {{current === 'home' ? 'on' : ''}}" data-key="home" data-url="/pages/home/home" bindtap="go">
+    <text class="ico">☀</text>
+    <text>天气</text>
+  </view>
+  <view class="item {{current === 'forecast' ? 'on' : ''}}" data-key="forecast" data-url="/pages/forecast/forecast" bindtap="go">
+    <text class="ico">☰</text>
+    <text>预报</text>
+  </view>
+  <view class="item {{current === 'cities' ? 'on' : ''}}" data-key="cities" data-url="/pages/cities/cities" bindtap="go">
+    <text class="ico">⌖</text>
+    <text>城市</text>
+  </view>
+  <view class="item {{current === 'satellite' ? 'on' : ''}}" data-key="satellite" data-url="/pages/satellite/satellite" bindtap="go">
+    <text class="ico">☁</text>
+    <text>云图</text>
+  </view>
+</view>

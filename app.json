@@ -1,0 +1,26 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/forecast/forecast",
+    "pages/hourly/hourly",
+    "pages/cities/cities",
+    "pages/satellite/satellite"
+  ],
+  "window": {
+    "navigationBarTitleText": "和风天气",
+    "navigationBarBackgroundColor": "#14386f",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#e8f1fb",
+    "backgroundTextStyle": "light"
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于定位你所在的城市，并显示当地天气预报"
+    }
+  },
+  "requiredPrivateInfos": [
+    "getLocation"
+  ],
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

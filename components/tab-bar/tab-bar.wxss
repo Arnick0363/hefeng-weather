@@ -1,0 +1,30 @@
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  display: flex;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 -8rpx 28rpx rgba(16, 32, 56, 0.08);
+  padding: 8rpx 8rpx calc(8rpx + env(safe-area-inset-bottom));
+}
+
+.item {
+  flex: 1;
+  text-align: center;
+  color: #5c6b7a;
+  font-size: 22rpx;
+  padding: 8rpx 0 10rpx;
+}
+
+.item .ico {
+  display: block;
+  font-size: 34rpx;
+  line-height: 1.2;
+}
+
+.item.on {
+  color: #1d4f91;
+  font-weight: 600;
+}

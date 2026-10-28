@@ -1,0 +1,125 @@
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #102033;
+  box-sizing: border-box;
+  padding-bottom: calc(112rpx + env(safe-area-inset-bottom));
+}
+
+.map-wrap {
+  position: relative;
+  height: 42vh;
+  background: #1b3348;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-miss {
+  height: 100%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  text-align: center;
+  font-size: 28rpx;
+  line-height: 1.5;
+}
+
+.map-badge {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  background: rgba(12, 24, 40, 0.78);
+  color: #ffffff;
+  font-size: 24rpx;
+  border-radius: 999rpx;
+  padding: 8rpx 18rpx;
+}
+
+.cloud {
+  flex: 1;
+  min-height: 0;
+  background: #f3f6fb;
+  border-radius: 28rpx 28rpx 0 0;
+  padding: 20rpx 24rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  color: #1a2332;
+}
+
+.cloud-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 650;
+}
+
+.source,
+.time,
+.tip,
+.count {
+  display: block;
+  color: #5c6b7a;
+  font-size: 22rpx;
+}
+
+.time {
+  margin-top: 8rpx;
+}
+
+.stage {
+  flex: 1;
+  min-height: 220rpx;
+  margin-top: 12rpx;
+  background: #0e1b2c;
+  border-radius: 20rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.cloud-img {
+  width: 100%;
+  height: 100%;
+}
+
+.cloud-fail {
+  color: #ffffff;
+  font-size: 26rpx;
+  line-height: 1.5;
+  padding: 40rpx 28rpx;
+  text-align: center;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.play {
+  background: #1d4f91;
+  color: #ffffff;
+  border-radius: 999rpx;
+  padding: 12rpx 22rpx;
+  font-size: 26rpx;
+}
+
+.slider {
+  flex: 1;
+  margin: 0 12rpx;
+}
+
+.tip {
+  margin-top: 4rpx;
+  line-height: 1.4;
+}

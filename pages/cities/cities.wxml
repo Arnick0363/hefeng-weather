@@ -1,0 +1,54 @@
+<view class="page">
+  <view class="search-wrap">
+    <input
+      class="search"
+      value="{{keyword}}"
+      placeholder="搜索城市、区县或拼音"
+      placeholder-class="ph"
+      confirm-type="search"
+      bindinput="onInput"
+    />
+    <view class="locate" bindtap="onLocate">{{locating ? '定位中…' : '定位当前城市'}}</view>
+  </view>
+
+  <view wx:if="{{searching}}" class="hint">正在搜索…</view>
+  <view wx:if="{{searchError}}" class="hint warn">{{searchError}}</view>
+  <view wx:if="{{results.length}}" class="card">
+    <text class="title">搜索结果</text>
+    <view wx:for="{{results}}" wx:key="id" class="row">
+      <view class="main">
+        <text class="name">{{item.name}}</text>
+        <text class="line">{{item.line}}</text>
+      </view>
+      <view class="action {{item.added ? 'ghost' : ''}}" data-index="{{index}}" bindtap="onAddResult">
+        {{item.added ? '切换' : '添加'}}
+      </view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="title">我的城市</text>
+    <text class="hint" wx:if="{{onlyOne}}">至少保留一个城市，默认是北京。</text>
+    <view wx:for="{{mine}}" wx:key="id" class="row" data-id="{{item.id}}" bindtap="onSelect">
+      <view class="main">
+        <view class="name-line">
+          <text class="name">{{item.name}}</text>
+          <text wx:if="{{item.current}}" class="badge">当前</text>
+        </view>
+        <text class="line">{{item.line}}</text>
+      </view>
+      <view wx:if="{{!onlyOne}}" class="action danger" data-id="{{item.id}}" catchtap="onDelete">删除</view>
+    </view>
+  </view>
+
+  <view class="card">
+    <text class="title">热门城市</text>
+    <view class="hot">
+      <view wx:for="{{hot}}" wx:key="id" class="chip {{item.added ? 'on' : ''}}" data-id="{{item.id}}" bindtap="onHot">
+        <text class="chip-name">{{item.name}}</text>
+        <text class="chip-line">{{item.adm1}}</text>
+      </view>
+    </view>
+  </view>
+  <tab-bar current="cities" />
+</view>

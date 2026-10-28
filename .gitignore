@@ -1,0 +1,12 @@
+# 依赖与构建产物（微信开发者工具可自动重建）
+miniprogram/node_modules/
+miniprogram/miniprogram_npm/
+
+# 个人配置与密钥（不要提交到仓库）
+config/env.js
+project.private.config.json
+
+# 日志与临时文件
+*.log
+.DS_Store
+Thumbs.db
